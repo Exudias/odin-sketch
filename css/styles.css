@@ -43,4 +43,5 @@ button {
 .grid-item {
     background-color: white;
     flex: 1;
+    border: 1px solid black;
 }
