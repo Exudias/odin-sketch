@@ -11,12 +11,28 @@ function generateGrid(x, y)
             let gridItem = document.createElement("div");
             gridItem.classList.add("grid-item");
             gridRow.appendChild(gridItem);
+            gridItem.addEventListener("mouseenter", onHoverGridItem);
         }
         grid.appendChild(gridRow);
     }
     return grid;
 }
 
+function createAndAddGrid(x, y)
+{
+    if (currentGrid) currentGrid.remove();
+
+    currentGrid = generateGrid(x, y)
+    gridContainer.appendChild(currentGrid);
+}
+
+function onHoverGridItem(e)
+{
+    this.style.backgroundColor = "black";
+}
+
 const gridContainer = document.querySelector(".grid-container");
-console.log(gridContainer);
-gridContainer.appendChild(generateGrid(16, 16));
+
+let currentGrid;
+
+createAndAddGrid(16, 16);
