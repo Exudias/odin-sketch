@@ -31,7 +31,35 @@ function onHoverGridItem(e)
     this.style.backgroundColor = "black";
 }
 
+function promptGridSizeAndCreate(e)
+{
+    let newSize = +prompt("Enter a new grid size: ");
+    if (!Number.isInteger(newSize))
+    {
+        alert("Invalid input!");
+        return;
+    }
+
+    if (newSize <= 0)
+    {
+        alert("Size cannot be non-positive!");
+        return;
+    }
+    else if (newSize > MAX_GRID_SIZE)
+    {
+        alert(`Size is too big! Please choose a size up to ${MAX_GRID_SIZE}x${MAX_GRID_SIZE}.`);
+        return;
+    }
+    
+    createAndAddGrid(newSize, newSize);
+}
+
+const MAX_GRID_SIZE = 128;
+
 const gridContainer = document.querySelector(".grid-container");
+const newGridButton = document.querySelector(".new-grid-button");
+
+newGridButton.addEventListener("click", promptGridSizeAndCreate);
 
 let currentGrid;
 
